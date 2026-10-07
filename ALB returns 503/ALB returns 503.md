@@ -36,3 +36,11 @@ Follow this systematic workflow to determine why your backend targets are droppi
     docker stats
     ```
 *   **Remediation:** Look for instances where memory utilization is pinned at nearly 100%. If your container hits its hard memory limit, the Linux kernel will trigger an OOM (Out Of Memory) kill event, or the app will become unresponsive. Increase the container resource allocations or scale out your architecture with more EC2 target nodes.
+
+
+
+
+
+this error occurs when the ALB sees no healthy servers to route traffic :
+    check webpage configured at the exact health check path /health --- open ngnix config file set location = /health , restart nginx , test it curl -I http://localhost/health --- HTTP/1.1 200 OK
+	EC2 instances must have an inbound rule that allows HTTP/HTTPS traffic coming specifically from the ALB's Security Group.
